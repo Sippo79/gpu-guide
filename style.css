@@ -1,0 +1,561 @@
+/* GPU Controls */
+
+.gpu-controls {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 36px;
+  flex-wrap: wrap;
+}
+
+.gpu-controls input,
+.gpu-controls select {
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  outline: none;
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.gpu-controls input {
+  flex: 1;
+  min-width: 260px;
+}
+
+.gpu-controls input::placeholder {
+  color: #8f9bb0;
+}
+
+.gpu-controls input:focus,
+.gpu-controls select:focus {
+  border-color: rgba(25, 227, 255, 0.7);
+  box-shadow: 0 0 0 3px rgba(25, 227, 255, 0.12);
+}
+
+.gpu-controls select:focus {
+  border-color: rgba(25, 227, 255, 0.7);
+  box-shadow: 0 0 0 3px rgba(25, 227, 255, 0.12);
+}
+
+.gpu-controls option {
+  color: #111827;
+}
+
+/* GPU Cards */
+
+.gpu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gpu-card {
+  padding: 24px;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+  transition: 0.22s ease;
+}
+
+.gpu-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(25, 227, 255, 0.38);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(25, 227, 255, 0.08);
+}
+
+.gpu-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.gpu-brand,
+.gpu-resolution {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.gpu-brand {
+  color: #07111f;
+  background: #19e3ff;
+}
+
+.gpu-resolution {
+  color: #dbe3f3;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.gpu-card h3 {
+  margin: 0 0 10px;
+  font-size: 23px;
+}
+
+.gpu-summary {
+  margin: 0 0 20px;
+  color: #cfd6e6;
+  line-height: 1.75;
+}
+
+.gpu-specs {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.gpu-spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gpu-spec span {
+  color: #9aa7bd;
+  font-size: 14px;
+}
+
+.gpu-spec strong {
+  text-align: right;
+  font-size: 14px;
+}
+
+.gpu-score-box {
+  margin-top: 18px;
+}
+
+.gpu-score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.gpu-score-head span {
+  color: #9aa7bd;
+}
+
+.gpu-score-head strong {
+  color: #19e3ff;
+}
+
+.performance-bar {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.performance-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #19e3ff, #7b61ff);
+}
+
+/* Recommend */
+
+.recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.recommend-card {
+  padding: 24px;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.recommend-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin-bottom: 14px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #07111f;
+  background: #19e3ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.recommend-card h3 {
+  margin: 0 0 12px;
+  font-size: 21px;
+}
+
+.recommend-card p {
+  margin: 0;
+  color: #cfd6e6;
+  line-height: 1.75;
+}
+
+/* Related Sites */
+
+.related-site-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.related-site-button {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 999px;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(25, 227, 255, 0.18), rgba(123, 97, 255, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
+  transition: 0.22s ease;
+}
+
+.related-site-button:hover {
+  transform: translateY(-3px);
+  border-color: rgba(25, 227, 255, 0.45);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.3),
+    0 0 26px rgba(25, 227, 255, 0.08);
+}
+
+.related-site-button span {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.related-site-button small {
+  color: #cfd6e6;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Empty */
+
+.empty-message {
+  grid-column: 1 / -1;
+  padding: 28px;
+  border-radius: 24px;
+  color: #cfd6e6;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .gpu-grid,
+  .recommend-grid,
+  .related-site-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpu-controls {
+    flex-direction: column;
+  }
+
+  .gpu-controls select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .gpu-card,
+  .recommend-card,
+  .related-site-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .gpu-card h3 {
+    font-size: 21px;
+  }
+
+  .gpu-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 900px) {
+  .gpu-grid,
+  .recommend-grid,
+  .related-site-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpu-controls {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .gpu-controls input,
+  .gpu-controls select {
+    width: 100%;
+  }
+}
+/* GPU Detail */
+
+.gpu-detail-hero {
+  padding: 72px 0 40px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 24px;
+  color: #9aa7bd;
+  font-weight: 700;
+}
+
+.back-link:hover {
+  color: #19e3ff;
+}
+
+.gpu-detail-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.gpu-detail-main,
+.gpu-detail-side,
+.gpu-info-card {
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.gpu-detail-main {
+  padding: 32px;
+}
+
+.gpu-detail-main h1 {
+  margin: 0 0 18px;
+  font-size: clamp(38px, 7vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.gpu-detail-lead {
+  margin: 0;
+  color: #cfd6e6;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.detail-score {
+  margin-top: 28px;
+}
+
+.gpu-detail-side {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail-label {
+  margin: 0 0 12px;
+  color: #19e3ff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.gpu-detail-side h2 {
+  margin: 0 0 14px;
+  font-size: 42px;
+  letter-spacing: -0.04em;
+}
+
+.gpu-detail-side p {
+  color: #cfd6e6;
+  line-height: 1.8;
+}
+
+.gpu-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.gpu-info-card {
+  padding: 24px;
+}
+
+.gpu-info-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.gpu-info-card p {
+  margin: 0;
+  color: #cfd6e6;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+  .gpu-detail-layout,
+  .gpu-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpu-detail-hero {
+    padding: 52px 0 28px;
+  }
+}
+
+@media (max-width: 520px) {
+  .gpu-detail-main,
+  .gpu-detail-side,
+  .gpu-info-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+}
+/* GPU Detail Extra */
+
+.gpu-detail-extra-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.gpu-extra-card {
+  padding: 24px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.gpu-extra-card-wide {
+  grid-column: span 2;
+}
+
+.gpu-extra-card h3 {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.gpu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gpu-list li {
+  padding: 12px 0 12px 26px;
+  position: relative;
+  color: #dbe3f3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gpu-list li:last-child {
+  border-bottom: none;
+}
+
+.gpu-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #19e3ff;
+  font-weight: 900;
+}
+
+.compare-link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.compare-link-card {
+  display: block;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.22s ease;
+}
+
+.compare-link-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(25, 227, 255, 0.38);
+}
+
+.compare-link-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #19e3ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.compare-link-card strong {
+  display: block;
+  color: #ffffff;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .gpu-grid,
+  .recommend-grid,
+  .related-site-grid,
+  .gpu-detail-layout,
+  .gpu-info-grid,
+  .gpu-detail-extra-grid,
+  .compare-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpu-controls {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .gpu-controls input,
+  .gpu-controls select {
+    width: 100%;
+  }
+
+  .gpu-controls input {
+    min-width: 100%;
+    flex: unset;
+  }
+
+  .related-site-button {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .gpu-extra-card-wide {
+    grid-column: span 1;
+  }
+
+  .gpu-detail-hero {
+    padding: 52px 0 28px;
+  }
+}

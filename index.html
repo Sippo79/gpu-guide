@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="GPU性能比較ガイド" />
+<meta property="og:description" content="GPU・グラフィックボードの性能を初心者向けに比較。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://YOUR-URL/" />
+<meta property="og:image" content="https://YOUR-URL/ogp.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+
+  <title>GPU性能比較ガイド｜RTX・Radeon グラボ比較サイト</title>
+  <meta name="description" content="GPU・グラフィックボードの性能を初心者向けに比較。FHD、WQHD、4K、FPS、MMO、重量級ゲームなど用途別におすすめGPUを分かりやすく紹介します。" />
+
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="site-logo">GPU <span>GUIDE</span></a>
+
+      <nav class="header-nav">
+        <a href="#compare" class="header-link">比較表</a>
+        <a href="#recommend" class="header-link">おすすめ</a>
+        <a href="#guide" class="header-link">選び方</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="hero-badge">GPU PERFORMANCE GUIDE</p>
+          <h1>GPU性能比較<br />ガイド</h1>
+
+          <p class="hero-text">
+            グラフィックボードの性能を、初心者でも分かりやすく比較。
+            FHD・WQHD・4Kなどの解像度や、FPS・MMO・重量級ゲームごとに
+            どのGPUを選べばいいかを確認できます。
+          </p>
+
+          <div class="hero-actions">
+            <a href="#compare" class="primary-btn">GPUを比較する</a>
+            <a href="#recommend" class="secondary-btn">用途別おすすめを見る</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="hero-card-label">このサイトで分かること</p>
+          <h2>GPU選びの迷いを減らす</h2>
+
+          <ul class="hero-check-list">
+            <li>GPUの性能差をざっくり比較</li>
+            <li>FHD・WQHD・4K向けを判断</li>
+            <li>FPSや重量級ゲーム向けを確認</li>
+            <li>価格よりも用途に合うGPUを探せる</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">COMPARE</p>
+          <h2>GPU性能比較表</h2>
+          <p>
+            主要GPUを性能順に比較できます。
+            まずは「どのGPUがどのくらいの位置づけなのか」をざっくり掴むのがおすすめです。
+          </p>
+        </div>
+
+        <div class="gpu-controls">
+         <input
+  type="search"
+  id="gpuSearch"
+  placeholder="GPU名で検索：RTX 5070 / RX 9070 XT など"
+/>
+   
+          <select id="brandFilter">
+            <option value="all">メーカー：すべて</option>
+            <option value="NVIDIA">NVIDIA</option>
+            <option value="AMD">AMD Radeon</option>
+          </select>
+
+          <select id="resolutionFilter">
+            <option value="all">解像度：すべて</option>
+            <option value="FHD">FHD向け</option>
+            <option value="WQHD">WQHD向け</option>
+            <option value="4K">4K向け</option>
+          </select>
+
+          <select id="sortSelect">
+            <option value="performance">性能順</option>
+            <option value="price">価格目安が安い順</option>
+            <option value="vram">VRAM多い順</option>
+          </select>
+        </div>
+
+        <div id="gpuGrid" class="gpu-grid">
+          <!-- script.jsでGPUカードを表示 -->
+        </div>
+      </div>
+    </section>
+
+    <section id="recommend" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">RECOMMEND</p>
+          <h2>用途別おすすめGPU</h2>
+          <p>
+            解像度やゲームジャンルごとに、選びやすいGPUの目安をまとめています。
+          </p>
+        </div>
+
+        <div class="recommend-grid">
+          <article class="recommend-card">
+            <span class="recommend-tag">FHD</span>
+            <h3>フルHDで快適に遊びたい</h3>
+            <p>
+              軽めのFPSや普段使い中心なら、ミドルクラスGPUでも十分。
+              価格を抑えつつ快適さを狙えます。
+            </p>
+          </article>
+
+          <article class="recommend-card">
+            <span class="recommend-tag">WQHD</span>
+            <h3>WQHDで高画質に遊びたい</h3>
+            <p>
+              画質とフレームレートのバランスを取るならWQHD向けGPUがおすすめ。
+              迷ったらこのクラスが狙い目です。
+            </p>
+          </article>
+
+          <article class="recommend-card">
+            <span class="recommend-tag">4K</span>
+            <h3>4Kや重量級ゲームを狙いたい</h3>
+            <p>
+              高解像度や重いゲームでは上位GPUが有利。
+              VRAM容量や消費電力もあわせて確認したいところです。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="section beginner-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">BEGINNER GUIDE</p>
+          <h2>GPU選びで見るポイント</h2>
+          <p>
+            GPUは単純な性能だけでなく、遊びたいゲーム・解像度・予算とのバランスで選ぶのが大事です。
+          </p>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <h3>解像度で必要性能が変わる</h3>
+            <p>
+              FHDよりWQHD、WQHDより4Kの方がGPU負荷は高くなります。
+              使っているモニターに合わせて選びましょう。
+            </p>
+          </article>
+
+          <article class="guide-card">
+            <h3>VRAM容量もチェック</h3>
+            <p>
+              高画質設定や重量級ゲームではVRAM容量が重要です。
+              長く使うなら余裕のあるモデルを選ぶと安心です。
+            </p>
+          </article>
+
+          <article class="guide-card">
+            <h3>CPUとのバランスも大事</h3>
+            <p>
+              GPUだけ強くしてもCPUが足を引っ張ることがあります。
+              特にFPSではCPU性能もフレームレートに影響します。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">RELATED SITES</p>
+          <h2>関連サイト</h2>
+          <p>
+            PC構成やゲーム別のおすすめもあわせて確認できます。
+          </p>
+        </div>
+
+<div class="related-site-grid">
+  <a href="https://sippo79.github.io/pc-build-check/" class="related-site-button">
+    <span class="related-site-mini">GPU GUIDE</span>
+    <span>PC構成診断</span>
+    <small>予算・用途・解像度からおすすめ構成を診断</small>
+  </a>
+
+  <a href="https://sippo79.github.io/game-pc-guide/" class="related-site-button">
+    <span class="related-site-mini">GAME PC GUIDE</span>
+    <span>ゲーム別おすすめPC</span>
+    <small>遊びたいゲームごとに必要スペックを確認</small>
+  </a>
+
+  <a href="https://sippo79.github.io/gpu-guide/" class="related-site-button">
+    <span class="related-site-mini">GPU GUIDE</span>
+    <span>GPU性能比較</span>
+    <small>グラボの性能・VRAM・用途を比較</small>
+  </a>
+</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 GPU GUIDE</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

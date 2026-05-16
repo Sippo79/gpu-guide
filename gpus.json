@@ -1,0 +1,156 @@
+[
+  {
+    "id": "rtx-5060",
+    "name": "GeForce RTX 5060",
+    "brand": "NVIDIA",
+    "vram": 8,
+    "target": "FHD",
+    "score": 58,
+    "price": 50000,
+    "power": 145,
+    "summary": "フルHD向けのミドルクラスGPU。軽めのFPSや普段使い、価格を抑えたゲーミングPC向け。",
+
+    "games": [
+      "VALORANT",
+      "Apex Legends",
+      "Fortnite",
+      "FF14"
+    ],
+
+    "compare": [
+      "rtx-5060-ti",
+      "rx-7600"
+    ],
+
+    "cpus": [
+      "Ryzen 5 7500F",
+      "Ryzen 7 5700X3D",
+      "Core i5-14400F"
+    ]
+  },
+
+  {
+    "id": "rtx-5070",
+    "name": "GeForce RTX 5070",
+    "brand": "NVIDIA",
+    "vram": 12,
+    "target": "WQHD",
+    "score": 78,
+    "price": 95000,
+    "power": 250,
+    "summary": "WQHDゲーミング向けの中心クラス。画質とフレームレートのバランスを取りやすい。",
+
+    "games": [
+      "Apex Legends",
+      "Battlefield",
+      "FF14",
+      "モンスターハンターワイルズ",
+      "Escape from Tarkov"
+    ],
+
+    "compare": [
+      "rtx-5070-ti",
+      "rx-7800-xt",
+      "rx-9070-xt"
+    ],
+
+    "cpus": [
+      "Ryzen 7 5700X3D",
+      "Ryzen 7 7800X3D",
+      "Core i5-14600KF"
+    ]
+  },
+
+  {
+    "id": "rtx-5080",
+    "name": "GeForce RTX 5080",
+    "brand": "NVIDIA",
+    "vram": 16,
+    "target": "4K",
+    "score": 96,
+    "price": 180000,
+    "power": 360,
+    "summary": "4Kゲーミングや重量級ゲーム向けのハイエンドGPU。高画質設定で遊びたい人向け。",
+
+    "games": [
+      "Cyberpunk 2077",
+      "Black Myth: Wukong",
+      "Starfield",
+      "4K重量級ゲーム"
+    ],
+
+    "compare": [
+      "rtx-5090",
+      "rx-7900-xtx",
+      "rtx-5070-ti"
+    ],
+
+    "cpus": [
+      "Ryzen 7 7800X3D",
+      "Ryzen 9 9950X3D",
+      "Core Ultra 7"
+    ]
+  },
+
+  {
+    "id": "rx-7800-xt",
+    "name": "Radeon RX 7800 XT",
+    "brand": "AMD",
+    "vram": 16,
+    "target": "WQHD",
+    "score": 80,
+    "price": 80000,
+    "power": 263,
+    "summary": "WQHD高画質向け。VRAM 16GBで重量級ゲームにも対応しやすい。",
+
+    "games": [
+      "Apex Legends",
+      "CoD",
+      "FF14",
+      "モンスターハンターワイルズ"
+    ],
+
+    "compare": [
+      "rtx-5070",
+      "rx-9070-xt",
+      "rx-7700-xt"
+    ],
+
+    "cpus": [
+      "Ryzen 7 5700X3D",
+      "Ryzen 7 7800X3D",
+      "Core i5-14600KF"
+    ]
+  },
+
+  {
+    "id": "rx-9070-xt",
+    "name": "Radeon RX 9070 XT",
+    "brand": "AMD",
+    "vram": 16,
+    "target": "WQHD",
+    "score": 89,
+    "price": 110000,
+    "power": 304,
+    "summary": "WQHD高画質から4K入門まで狙えるRadeon GPU。価格と性能のバランスを重視したい人向け。",
+
+    "games": [
+      "Battlefield",
+      "Escape from Tarkov",
+      "Cyberpunk 2077",
+      "重量級ゲーム"
+    ],
+
+    "compare": [
+      "rtx-5070-ti",
+      "rx-7900-xt",
+      "rx-7800-xt"
+    ],
+
+    "cpus": [
+      "Ryzen 7 7800X3D",
+      "Ryzen 7 9800X3D",
+      "Core Ultra 7"
+    ]
+  }
+]
