@@ -520,6 +520,62 @@
   line-height: 1.45;
 }
 
+/* Purchase Links */
+
+.purchase-section .section-heading {
+  margin-bottom: 22px;
+}
+
+.purchase-link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.purchase-link-card {
+  display: flex;
+  min-height: 124px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 22px;
+  border-radius: 22px;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(25, 227, 255, 0.16), rgba(123, 97, 255, 0.2)),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+  transition: 0.22s ease;
+}
+
+.purchase-link-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(25, 227, 255, 0.46);
+  box-shadow:
+    0 26px 68px rgba(0, 0, 0, 0.34),
+    0 0 30px rgba(25, 227, 255, 0.1);
+}
+
+.purchase-link-card span {
+  color: #19e3ff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.purchase-link-card strong {
+  display: block;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.purchase-link-card small {
+  color: #cfd6e6;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 @media (max-width: 900px) {
   .gpu-grid,
   .recommend-grid,
@@ -527,7 +583,8 @@
   .gpu-detail-layout,
   .gpu-info-grid,
   .gpu-detail-extra-grid,
-  .compare-link-grid {
+  .compare-link-grid,
+  .purchase-link-grid {
     grid-template-columns: 1fr;
   }
 

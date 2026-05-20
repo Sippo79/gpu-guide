@@ -1,6 +1,28 @@
 const gpuDetail = document.getElementById("gpuDetail");
 
 let allGpus = [];
+
+const purchaseSearchSites = [
+  {
+    name: "Amazon",
+    label: "Amazonで探す",
+    note: "GPU名で検索結果を開く",
+    buildUrl: (gpuName) => `https://www.amazon.co.jp/s?k=${encodeURIComponent(gpuName)}`,
+  },
+  {
+    name: "楽天市場",
+    label: "楽天市場で探す",
+    note: "GPU名で検索結果を開く",
+    buildUrl: (gpuName) => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(gpuName)}/`,
+  },
+  {
+    name: "パソコン工房",
+    label: "パソコン工房で探す",
+    note: "GPU名で検索結果を開く",
+    buildUrl: (gpuName) => `https://www.pc-koubou.jp/user_data/search.php?q=${encodeURIComponent(gpuName)}`,
+  },
+];
+
 async function loadGpuDetail() {
   const params = new URLSearchParams(window.location.search);
   const gpuId = params.get("id");
@@ -56,6 +78,21 @@ function getPowerSupply(power) {
   if (power >= 350) return "750W〜850W以上";
   if (power >= 250) return "650W〜750W以上";
   return "550W〜650W以上";
+}
+
+function renderPurchaseSearchLinks(gpuName) {
+  return purchaseSearchSites.map((site) => `
+    <a
+      href="${site.buildUrl(gpuName)}"
+      class="purchase-link-card"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>${site.name}</span>
+      <strong>${site.label}</strong>
+      <small>${site.note}</small>
+    </a>
+  `).join("");
 }
 
 function renderGpuDetail(gpu) {
@@ -123,7 +160,20 @@ function renderGpuDetail(gpu) {
         </article>
       </div>
     </section>
-        <section class="section">
+
+    <section class="section purchase-section">
+      <div class="section-heading">
+        <p class="section-label">SHOP SEARCH</p>
+        <h2>販売サイトで探す</h2>
+        <p>${gpu.name} の検索結果ページを開きます。商品直リンクやアフィリエイトリンクではありません。</p>
+      </div>
+
+      <div class="purchase-link-grid">
+        ${renderPurchaseSearchLinks(gpu.name)}
+      </div>
+    </section>
+
+    <section class="section">
       <div class="gpu-detail-extra-grid">
         <article class="gpu-extra-card">
           <p class="info-label">おすすめゲーム</p>
