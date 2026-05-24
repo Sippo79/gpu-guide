@@ -2,27 +2,6 @@ const gpuDetail = document.getElementById("gpuDetail");
 
 let allGpus = [];
 
-const purchaseSearchSites = [
-  {
-    name: "Amazon",
-    label: "Amazonで探す",
-    note: "GPU名で検索結果を開く",
-    buildUrl: (gpuName) => `https://www.amazon.co.jp/s?k=${encodeURIComponent(gpuName)}`,
-  },
-  {
-    name: "楽天市場",
-    label: "楽天市場で探す",
-    note: "GPU名で検索結果を開く",
-    buildUrl: (gpuName) => `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(gpuName)}/`,
-  },
-  {
-    name: "パソコン工房",
-    label: "パソコン工房で探す",
-    note: "GPU名で検索結果を開く",
-    buildUrl: (gpuName) => `https://www.pc-koubou.jp/user_data/search.php?q=${encodeURIComponent(gpuName)}`,
-  },
-];
-
 async function loadGpuDetail() {
   const params = new URLSearchParams(window.location.search);
   const gpuId = params.get("id");
@@ -39,8 +18,8 @@ async function loadGpuDetail() {
       throw new Error("GPUデータの読み込みに失敗しました");
     }
 
-allGpus = await response.json();
-const gpu = allGpus.find((item) => item.id === gpuId);
+    allGpus = await response.json();
+    const gpu = allGpus.find((item) => item.id === gpuId);
 
     if (!gpu) {
       showNotFound();
@@ -74,29 +53,16 @@ function getTargetText(target) {
 }
 
 function getPowerSupply(power) {
-  if (power >= 500) return "850W〜1000W以上";
-  if (power >= 350) return "750W〜850W以上";
-  if (power >= 250) return "650W〜750W以上";
-  return "550W〜650W以上";
-}
-
-function renderPurchaseSearchLinks(gpuName) {
-  return purchaseSearchSites.map((site) => `
-    <a
-      href="${site.buildUrl(gpuName)}"
-      class="purchase-link-card"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span>${site.name}</span>
-      <strong>${site.label}</strong>
-      <small>${site.note}</small>
-    </a>
-  `).join("");
+  if (power >= 500) return "850W-1000W以上";
+  if (power >= 350) return "750W-850W以上";
+  if (power >= 250) return "650W-750W以上";
+  return "550W-650W以上";
 }
 
 function renderGpuDetail(gpu) {
   const rank = getRank(gpu.score);
+  const purchaseLinks = window.gpuGuideAffiliate.renderPurchaseSearchLinks(gpu.name);
+  const affiliateDisclosure = window.gpuGuideAffiliate.renderAffiliateDisclosure();
 
   document.title = `${gpu.name}の性能｜GPU性能比較ガイド`;
 
@@ -164,13 +130,15 @@ function renderGpuDetail(gpu) {
     <section class="section purchase-section">
       <div class="section-heading">
         <p class="section-label">SHOP SEARCH</p>
-        <h2>販売サイトで探す</h2>
-        <p>${gpu.name} の検索結果ページを開きます。商品直リンクやアフィリエイトリンクではありません。</p>
+        <h2>おすすめ購入先</h2>
+        <p>${gpu.name} のGPU単体、搭載BTOパソコン、相性のよいモニターを検索できます。</p>
       </div>
 
       <div class="purchase-link-grid">
-        ${renderPurchaseSearchLinks(gpu.name)}
+        ${purchaseLinks}
       </div>
+
+      ${affiliateDisclosure}
     </section>
 
     <section class="section">
@@ -196,17 +164,17 @@ function renderGpuDetail(gpu) {
           <h3>近い性能帯のGPU</h3>
           <div class="compare-link-grid">
             ${(gpu.compare || []).map((id) => {
-  const targetGpu = allGpus.find((item) => item.id === id);
+              const targetGpu = allGpus.find((item) => item.id === id);
 
-  if (!targetGpu) return "";
+              if (!targetGpu) return "";
 
-  return `
-    <a href="gpu.html?id=${targetGpu.id}" class="compare-link-card">
-      <span>${targetGpu.brand}</span>
-      <strong>${targetGpu.name}</strong>
-    </a>
-  `;
-}).join("")}
+              return `
+                <a href="gpu.html?id=${targetGpu.id}" class="compare-link-card">
+                  <span>${targetGpu.brand}</span>
+                  <strong>${targetGpu.name}</strong>
+                </a>
+              `;
+            }).join("")}
           </div>
         </article>
       </div>
