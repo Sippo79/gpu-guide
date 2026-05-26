@@ -558,6 +558,19 @@
     0 0 30px rgba(25, 227, 255, 0.1);
 }
 
+.purchase-link-card-disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.35);
+}
+
+.purchase-link-card-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+}
+
 .purchase-link-card span {
   color: #19e3ff;
   font-size: 12px;

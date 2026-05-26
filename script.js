@@ -14,6 +14,7 @@ const rakutenGpuLinks = Object.fromEntries(
 );
 
 const affiliateRel = "nofollow sponsored noopener noreferrer";
+const pendingAffiliateTypes = new Set(["bto", "monitor"]);
 const affiliateTypeAliases = {
   amazonGpu: "amazon",
   rakutenGpu: "rakuten",
@@ -64,6 +65,11 @@ function getRakutenGpuAffiliateUrl(gpuName) {
 
 function buildAffiliateUrl(type, gpuName = "") {
   const affiliateType = affiliateTypeAliases[type] || type;
+
+  if (pendingAffiliateTypes.has(affiliateType)) {
+    return "";
+  }
+
   const gpuAffiliateUrl = getGpuAffiliateLink(gpuName, affiliateType);
 
   if (gpuAffiliateUrl) {
@@ -82,7 +88,7 @@ function buildAffiliateUrl(type, gpuName = "") {
   const baseUrl = affiliateLinks[affiliateType];
 
   if (!baseUrl) {
-    return "#";
+    return "";
   }
 
   const gpuQuery = encodeURIComponent(gpuName);
@@ -111,18 +117,19 @@ function getAffiliateItems(gpuName) {
     },
     {
       type: "bto",
-      name: "BTO PC",
-      label: "このGPU搭載BTOパソコンを探す",
-      note: "完成品PCの候補を確認",
+      name: "BTOサイト（準備中）",
+      label: "リンク先を準備中です",
+      note: "準備ができ次第、ボタンを有効化します",
     },
     {
       type: "monitor",
-      name: "Monitor",
-      label: "GPU性能に合うゲーミングモニターを見る",
-      note: "解像度やリフレッシュレートも一緒に検討",
+      name: "ゲーミングモニター（準備中）",
+      label: "リンク先を準備中です",
+      note: "準備ができ次第、ボタンを有効化します",
     },
   ].map((item) => ({
     ...item,
+    disabled: pendingAffiliateTypes.has(item.type),
     url: buildAffiliateUrl(item.type, gpuName),
   }));
 }
@@ -137,18 +144,34 @@ function renderAffiliateDisclosure() {
 }
 
 function renderPurchaseSearchLinks(gpuName) {
-  return getAffiliateItems(gpuName).map((site) => `
-    <a
-      href="${site.url}"
-      class="purchase-link-card"
-      target="_blank"
-      rel="${affiliateRel}"
-    >
-      <span>${site.name}</span>
-      <strong>${site.label}</strong>
-      <small>${site.note}</small>
-    </a>
-  `).join("");
+  return getAffiliateItems(gpuName).map((site) => {
+    if (site.disabled || !site.url) {
+      return `
+        <div
+          class="purchase-link-card purchase-link-card-disabled"
+          role="link"
+          aria-disabled="true"
+        >
+          <span>${site.name}</span>
+          <strong>${site.label}</strong>
+          <small>${site.note}</small>
+        </div>
+      `;
+    }
+
+    return `
+      <a
+        href="${site.url}"
+        class="purchase-link-card"
+        target="_blank"
+        rel="${affiliateRel}"
+      >
+        <span>${site.name}</span>
+        <strong>${site.label}</strong>
+        <small>${site.note}</small>
+      </a>
+    `;
+  }).join("");
 }
 
 window.gpuGuideAffiliate = {
@@ -156,6 +179,7 @@ window.gpuGuideAffiliate = {
   gpuAffiliateLinks: affiliateLinkData,
   rakutenGpuLinks,
   affiliateRel,
+  pendingAffiliateTypes,
   affiliateTypeAliases,
   normalizeGpuName,
   getGpuNameLookupValue,
