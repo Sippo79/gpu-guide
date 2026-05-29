@@ -195,11 +195,37 @@ const gpuSearch = document.getElementById("gpuSearch");
 const brandFilter = document.getElementById("brandFilter");
 const resolutionFilter = document.getElementById("resolutionFilter");
 const sortSelect = document.getElementById("sortSelect");
+const gpuRankingList = document.getElementById("gpuRankingList");
+const rankingTabs = document.querySelectorAll(".ranking-tab");
 
 let gpus = [];
+let activeRankingType = "overall";
+
+const rankingConfigs = {
+  overall: {
+    filter: () => true,
+    sort: (a, b) => getGpuScore(b) - getGpuScore(a),
+  },
+  fhd: {
+    filter: (gpu) => gpu.target === "FHD",
+    sort: (a, b) => getGpuScore(b) - getGpuScore(a),
+  },
+  wqhd: {
+    filter: (gpu) => gpu.target === "WQHD",
+    sort: (a, b) => getGpuScore(b) - getGpuScore(a),
+  },
+  "4k": {
+    filter: (gpu) => gpu.target === "4K",
+    sort: (a, b) => getGpuScore(b) - getGpuScore(a),
+  },
+  value: {
+    filter: (gpu) => Number(getGpuPrice(gpu)) > 0,
+    sort: (a, b) => getGpuValueScore(b) - getGpuValueScore(a),
+  },
+};
 
 async function loadGpus() {
-  if (!gpuGrid) return;
+  if (!gpuGrid && !gpuRankingList) return;
 
   try {
     const response = await fetch("gpus.json");
@@ -210,17 +236,23 @@ async function loadGpus() {
 
     gpus = await response.json();
     renderGpus();
+    renderGpuRanking();
   } catch (error) {
-    gpuGrid.innerHTML = `
+    const errorMessage = `
       <div class="empty-message">
         GPUデータを読み込めませんでした。ファイル名や配置場所を確認してください。
       </div>
     `;
+
+    if (gpuGrid) gpuGrid.innerHTML = errorMessage;
+    if (gpuRankingList) gpuRankingList.innerHTML = errorMessage;
     console.error(error);
   }
 }
 
 function renderGpus() {
+  if (!gpuGrid || !gpuSearch || !brandFilter || !resolutionFilter || !sortSelect) return;
+
   const searchValue = gpuSearch.value.trim().toLowerCase();
   const brandValue = brandFilter.value;
   const resolutionValue = resolutionFilter.value;
@@ -282,7 +314,7 @@ function createGpuCard(gpu) {
 
         <div class="gpu-spec">
           <span>価格目安</span>
-          <strong>${gpu.price.toLocaleString()}円前後</strong>
+          <strong>${formatGpuPrice(gpu)}</strong>
         </div>
 
         <div class="gpu-spec">
@@ -305,11 +337,116 @@ function createGpuCard(gpu) {
   `;
 }
 
+function getGpuScore(gpu) {
+  return Number(gpu.score ?? gpu.benchmarkScore ?? 0);
+}
+
+function getGpuPrice(gpu) {
+  const price = Number(gpu.price ?? gpu.estimatedPrice);
+  return Number.isFinite(price) && price > 0 ? price : null;
+}
+
+function formatGpuPrice(gpu) {
+  const price = getGpuPrice(gpu);
+
+  if (!price) {
+    return "価格未設定";
+  }
+
+  if (price >= 10000) {
+    return `約${Math.floor(price / 10000)}万円`;
+  }
+
+  return `約${Math.floor(price / 1000) * 1000}円`;
+}
+
+function getGpuValueScore(gpu) {
+  const price = getGpuPrice(gpu);
+  return price ? getGpuScore(gpu) / (price / 10000) : 0;
+}
+
+function getGpuUseCase(gpu) {
+  const score = getGpuScore(gpu);
+
+  if (score >= 92) return "4K高画質・重量級ゲーム・クリエイティブ用途";
+  if (score >= 84) return "WQHD高画質・4K入門・重めのゲーム";
+  if (score >= 70) return "WQHDゲーミング・高画質設定";
+  if (score >= 56) return "FHD高画質・WQHD入門";
+  return "FHDゲーミング・軽めのゲーム";
+}
+
+function getRankingGpus(type = activeRankingType) {
+  const config = rankingConfigs[type] || rankingConfigs.overall;
+
+  return [...gpus]
+    .filter((gpu) => Number.isFinite(getGpuScore(gpu)) && config.filter(gpu))
+    .sort(config.sort);
+}
+
+function renderGpuRanking() {
+  if (!gpuRankingList) return;
+
+  const rankingGpus = getRankingGpus();
+
+  if (rankingGpus.length === 0) {
+    gpuRankingList.innerHTML = `
+      <div class="empty-message">
+        表示できるGPUランキングがありません。
+      </div>
+    `;
+    return;
+  }
+
+  gpuRankingList.innerHTML = rankingGpus.map(createRankingRow).join("");
+}
+
+function createRankingRow(gpu, index) {
+  const rank = index + 1;
+  const topRankClass = rank <= 3 ? ` ranking-row-top ranking-row-top-${rank}` : "";
+
+  return `
+    <a href="gpu.html?id=${gpu.id}" class="ranking-row${topRankClass}">
+      <span class="ranking-rank" data-label="順位">
+        <strong>${rank}</strong>
+      </span>
+
+      <span class="ranking-gpu" data-label="GPU名">
+        <strong>${gpu.name}</strong>
+        <small>${gpu.brand}</small>
+      </span>
+
+      <span class="ranking-score" data-label="性能スコア">
+        <strong>${getGpuScore(gpu)}</strong>
+        <span class="ranking-score-bar">
+          <span style="width: ${getGpuScore(gpu)}%;"></span>
+        </span>
+      </span>
+
+      <span class="ranking-price" data-label="目安価格">${formatGpuPrice(gpu)}</span>
+      <span class="ranking-use" data-label="用途の目安">${getGpuUseCase(gpu)}</span>
+    </a>
+  `;
+}
+
 if (gpuGrid && gpuSearch && brandFilter && resolutionFilter && sortSelect) {
   gpuSearch.addEventListener("input", renderGpus);
   brandFilter.addEventListener("change", renderGpus);
   resolutionFilter.addEventListener("change", renderGpus);
   sortSelect.addEventListener("change", renderGpus);
-
-  loadGpus();
 }
+
+if (rankingTabs.length > 0) {
+  rankingTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      activeRankingType = tab.dataset.rankingType || "overall";
+
+      rankingTabs.forEach((item) => {
+        item.classList.toggle("is-active", item === tab);
+      });
+
+      renderGpuRanking();
+    });
+  });
+}
+
+loadGpus();

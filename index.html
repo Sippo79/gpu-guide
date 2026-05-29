@@ -28,6 +28,7 @@ content="グラボ比較・GPU性能比較サイト | GPU GUIDE" />
       <a href="index.html" class="site-logo">GPU <span>GUIDE</span></a>
 
       <nav class="header-nav">
+        <a href="#ranking" class="header-link">ランキング</a>
         <a href="#compare" class="header-link">比較表</a>
         <a href="#recommend" class="header-link">おすすめ</a>
         <a href="#guide" class="header-link">選び方</a>
@@ -64,6 +65,40 @@ content="グラボ比較・GPU性能比較サイト | GPU GUIDE" />
             <li>FPSや重量級ゲーム向けを確認</li>
             <li>価格よりも用途に合うGPUを探せる</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ranking" class="section ranking-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label">RANKING</p>
+          <h2>GPU性能ランキング</h2>
+          <p>
+            性能スコアが高い順にGPUを自動ソート。目安価格や用途もあわせて、性能差を一目で比較できます。
+          </p>
+        </div>
+
+        <div class="ranking-tabs" aria-label="GPUランキング切り替え">
+          <button type="button" class="ranking-tab is-active" data-ranking-type="overall">総合</button>
+          <button type="button" class="ranking-tab" data-ranking-type="fhd">FHD</button>
+          <button type="button" class="ranking-tab" data-ranking-type="wqhd">WQHD</button>
+          <button type="button" class="ranking-tab" data-ranking-type="4k">4K</button>
+          <button type="button" class="ranking-tab" data-ranking-type="value">コスパ</button>
+        </div>
+
+        <div class="ranking-board">
+          <div class="ranking-header">
+            <span>順位</span>
+            <span>GPU名</span>
+            <span>性能スコア</span>
+            <span>目安価格</span>
+            <span>用途の目安</span>
+          </div>
+
+          <div id="gpuRankingList" class="ranking-list">
+            <!-- script.jsでGPUランキングを表示 -->
+          </div>
         </div>
       </div>
     </section>

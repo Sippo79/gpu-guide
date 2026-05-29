@@ -307,12 +307,12 @@ a {
   }
 
   .header-nav {
-    gap: 4px;
+    gap: 2px;
   }
 
   .header-link {
-    padding: 8px 9px;
-    font-size: 12px;
+    padding: 7px 6px;
+    font-size: 11px;
   }
 
   .hero-card,
