@@ -2,10 +2,6 @@
 
 /* GPU Ranking */
 
-.ranking-section {
-  padding-top: 38px;
-}
-
 .ranking-tabs {
   display: flex;
   gap: 10px;
@@ -359,6 +355,25 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
   border: 1px solid rgba(255, 255, 255, 0.11);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+  transition: 0.22s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+a.recommend-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(25, 227, 255, 0.38);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(25, 227, 255, 0.08);
+}
+
+.recommend-card-cta {
+  margin-top: auto;
+  padding-top: 16px;
+  color: #19e3ff;
+  font-size: 13px;
+  font-weight: 900;
 }
 
 .recommend-tag {
@@ -424,6 +439,104 @@
   color: #cfd6e6;
   font-size: 12px;
   line-height: 1.5;
+}
+
+/* GPU Labels */
+
+.gpu-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.gpu-label-recommend {
+  color: #07111f;
+  background: linear-gradient(135deg, #19e3ff, #7b61ff);
+}
+
+.gpu-label-entry {
+  color: #a8b3ff;
+  background: rgba(123, 97, 255, 0.15);
+  border: 1px solid rgba(123, 97, 255, 0.4);
+}
+
+.gpu-label-popular {
+  color: #19e3ff;
+  background: rgba(25, 227, 255, 0.1);
+  border: 1px solid rgba(25, 227, 255, 0.35);
+}
+
+.gpu-label-value {
+  color: #dbe3f3;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Ranking Labels */
+
+.ranking-label {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.ranking-label-recommend {
+  color: #07111f;
+  background: linear-gradient(135deg, #19e3ff, #7b61ff);
+}
+
+.ranking-label-entry {
+  color: #a8b3ff;
+  background: rgba(123, 97, 255, 0.2);
+  border: 1px solid rgba(123, 97, 255, 0.4);
+}
+
+.ranking-label-popular {
+  color: #19e3ff;
+  background: rgba(25, 227, 255, 0.12);
+  border: 1px solid rgba(25, 227, 255, 0.35);
+}
+
+.ranking-label-value {
+  color: #dbe3f3;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Detail CTA */
+
+.detail-cta-inner {
+  padding: 48px;
+  border-radius: 28px;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(25, 227, 255, 0.08), rgba(123, 97, 255, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.detail-cta-heading {
+  margin: 8px 0 12px;
+  font-size: 32px;
+  letter-spacing: -0.03em;
+}
+
+.detail-cta-text {
+  margin: 0 0 28px;
+  color: #cfd6e6;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 /* Empty */
@@ -509,8 +622,10 @@
 
   .gpu-controls {
     flex-direction: column;
+    margin-bottom: 32px;
   }
 
+  .gpu-controls input,
   .gpu-controls select {
     width: 100%;
   }
@@ -532,22 +647,14 @@
     flex-direction: column;
     align-items: flex-start;
   }
-}
-@media (max-width: 900px) {
-  .gpu-grid,
-  .recommend-grid,
-  .related-site-grid {
-    grid-template-columns: 1fr;
+
+  .detail-cta-inner {
+    padding: 32px 24px;
+    border-radius: 22px;
   }
 
-  .gpu-controls {
-    flex-direction: column;
-    margin-bottom: 32px;
-  }
-
-  .gpu-controls input,
-  .gpu-controls select {
-    width: 100%;
+  .detail-cta-heading {
+    font-size: 24px;
   }
 }
 /* GPU Detail */

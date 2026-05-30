@@ -201,6 +201,17 @@ const rankingTabs = document.querySelectorAll(".ranking-tab");
 let gpus = [];
 let activeRankingType = "overall";
 
+const GPU_LABELS = {
+  "rtx-4060":       { text: "初心者向け",   type: "entry" },
+  "rtx-4070-super": { text: "迷ったらこれ", type: "recommend" },
+  "rx-9070-xt":     { text: "人気",          type: "popular" },
+  "rx-7900-gre":    { text: "コスパ◎",      type: "value" },
+};
+
+function getGpuLabel(gpu) {
+  return GPU_LABELS[gpu.id] || null;
+}
+
 const rankingConfigs = {
   overall: {
     filter: () => true,
@@ -295,6 +306,11 @@ function renderGpus() {
 }
 
 function createGpuCard(gpu) {
+  const label = getGpuLabel(gpu);
+  const labelHtml = label
+    ? `<span class="gpu-label gpu-label-${label.type}">${label.text}</span>`
+    : "";
+
   return `
     <a href="gpu.html?id=${gpu.id}" class="gpu-card">
       <div class="gpu-card-top">
@@ -302,6 +318,7 @@ function createGpuCard(gpu) {
         <span class="gpu-resolution">${gpu.target}向け</span>
       </div>
 
+      ${labelHtml}
       <h3>${gpu.name}</h3>
 
       <p class="gpu-summary">${gpu.summary}</p>
@@ -403,6 +420,10 @@ function renderGpuRanking() {
 function createRankingRow(gpu, index) {
   const rank = index + 1;
   const topRankClass = rank <= 3 ? ` ranking-row-top ranking-row-top-${rank}` : "";
+  const label = getGpuLabel(gpu);
+  const rankingLabelHtml = label
+    ? `<span class="ranking-label ranking-label-${label.type}">${label.text}</span>`
+    : "";
 
   return `
     <a href="gpu.html?id=${gpu.id}" class="ranking-row${topRankClass}">
@@ -411,7 +432,7 @@ function createRankingRow(gpu, index) {
       </span>
 
       <span class="ranking-gpu" data-label="GPU名">
-        <strong>${gpu.name}</strong>
+        <strong>${gpu.name}${rankingLabelHtml}</strong>
         <small>${gpu.brand}</small>
       </span>
 
@@ -450,3 +471,14 @@ if (rankingTabs.length > 0) {
 }
 
 loadGpus();
+
+// RECOMMENDカードクリックで比較表のフィルターを自動適用
+document.querySelectorAll(".recommend-card[data-filter-resolution]").forEach((card) => {
+  card.addEventListener("click", () => {
+    const resolution = card.dataset.filterResolution;
+    if (resolutionFilter) {
+      resolutionFilter.value = resolution;
+      renderGpus();
+    }
+  });
+});

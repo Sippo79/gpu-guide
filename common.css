@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -201,7 +202,8 @@ a {
 /* Section */
 
 .section {
-  padding: 10px 0;
+  padding: 64px 0;
+  scroll-margin-top: 80px;
 }
 
 .section-heading {
@@ -230,10 +232,6 @@ a {
 }
 
 /* Guide Cards */
-
-.beginner-section {
-  padding-top: 40px;
-}
 
 .guide-grid {
   display: grid;
@@ -291,6 +289,10 @@ a {
   .secondary-btn {
     width: 100%;
   }
+
+  .section {
+    padding: 52px 0;
+  }
 }
 
 @media (max-width: 520px) {
@@ -322,7 +324,7 @@ a {
   }
 
   .section {
-    padding: 56px 0;
+    padding: 44px 0;
   }
 
   .section-heading h2 {

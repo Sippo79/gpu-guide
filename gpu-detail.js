@@ -59,12 +59,29 @@ function getPowerSupply(power) {
   return "550W-650W以上";
 }
 
+function setMetaTag(attr, attrValue, content) {
+  const el = document.querySelector(`meta[${attr}="${attrValue}"]`);
+  if (el) el.setAttribute("content", content);
+}
+
+function updateOgp(gpu) {
+  const title = `${gpu.name}の性能スコア・VRAM・用途｜GPU GUIDE`;
+  const description = `${gpu.name}（${gpu.brand}）の性能スコア${gpu.score}、VRAM ${gpu.vram}GB。${gpu.summary}`;
+  const url = `https://sippo79.github.io/gpu-guide/gpu.html?id=${gpu.id}`;
+
+  document.title = title;
+  setMetaTag("name", "description", description);
+  setMetaTag("property", "og:title", title);
+  setMetaTag("property", "og:description", description);
+  setMetaTag("property", "og:url", url);
+}
+
 function renderGpuDetail(gpu) {
   const rank = getRank(gpu.score);
   const purchaseLinks = window.gpuGuideAffiliate.renderPurchaseSearchLinks(gpu.name);
   const affiliateDisclosure = window.gpuGuideAffiliate.renderAffiliateDisclosure();
 
-  document.title = `${gpu.name}の性能｜GPU性能比較ガイド`;
+  updateOgp(gpu);
 
   gpuDetail.innerHTML = `
     <div class="gpu-detail-layout">
@@ -177,6 +194,15 @@ function renderGpuDetail(gpu) {
             }).join("")}
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-cta-inner">
+        <p class="section-label">OTHER GPUs</p>
+        <h2 class="detail-cta-heading">他のGPUと比較する</h2>
+        <p class="detail-cta-text">性能・価格・解像度別にGPUを絞り込んで一覧比較できます。</p>
+        <a href="index.html#compare" class="primary-btn">GPU比較表を見る →</a>
       </div>
     </section>
   `;
